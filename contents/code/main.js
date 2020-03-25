@@ -1,5 +1,6 @@
 var BANNED_RESOURCES = [
-    "plasmashell"
+    "plasmashell",
+    "yakuake"
 ];
 
 workspace.clientMaximizeSet.connect(function(client, h, v) {
