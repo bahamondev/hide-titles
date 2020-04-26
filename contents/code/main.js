@@ -1,6 +1,7 @@
 var BANNED_RESOURCES = [
     "plasmashell",
-    "yakuake"
+    "yakuake",
+    "lattedock"
 ];
 
 workspace.clientMaximizeSet.connect(function(client, h, v) {
