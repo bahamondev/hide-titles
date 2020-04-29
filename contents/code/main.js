@@ -13,7 +13,9 @@ workspace.clientMaximizeSet.connect(function(client, h, v) {
 workspace.clientAdded.connect(function(client) {
     if (canRemoveDecoration(client)) {
         var area = workspace.clientArea(KWin.MaximizeArea, client);
-        client.noBorder = client.width >= area.width && client.height >= area.height;
+        var isMaximized = client.width >= area.width && client.height >= area.height;
+        
+        client.noBorder = client.noBorder || isMaximized;
     }
 });
 
