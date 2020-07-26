@@ -12,6 +12,6 @@ X-KDE-ServiceTypes=KWin/Script
 X-KDE-PluginInfo-Author=Jose Bahamonde Cordeiro
 X-KDE-PluginInfo-Email=jose@bahamonde.dev
 X-KDE-PluginInfo-Name=hide-titles
-X-KDE-PluginInfo-Version=1.0.5-SNAPSHOT
+X-KDE-PluginInfo-Version=1.0.5
 X-KDE-PluginInfo-Website=https://github.com/JoseBahamonde/hide-titles
 X-KDE-PluginInfo-License=GPLv3
