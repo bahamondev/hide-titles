@@ -6,7 +6,7 @@ A KWin script which hides the window titles when they are maximized.
 
 ### Build
 
-Just run the `build.sh` script. That will create a zip file with plugin contents and rename it to the `.kwinscript` extension.
+Just run the `make build`. That will create a zip file with plugin contents and rename it to the `.kwinscript` extension.
 If you want to manually build the script then:
 
 1. Compress the `contents` folder and the `metadata.desktop` file into a zip
@@ -14,13 +14,7 @@ If you want to manually build the script then:
 
 ### Install
 
-Go to the project folder and run:
-
-``` sh
-./install.sh
-```
-
-That should clean, build and install the plugin in the system.
+Go to the project folder and run `make install`. That should clean and uninstall previous builds, perform a new build and install the plugin in the system.
 
 If you want to manually install the script:
 
@@ -30,11 +24,7 @@ plasmapkg2 -t kwinscript -i hide-titles.kwinscript
 
 ### Uninstall
 
-To uninstall, run:
-
-```bash
-plasmapkg2 -t kwinscript -r hide-titles.kwinscript
-```
+Run `make uninstall`.
 
 ## Features
 
@@ -48,7 +38,8 @@ And never applies on windows that always start without window borders (ie, latte
 
 To-do list:
 
-* Let the user configure application exceptions.
+* Let the user set up application exceptions.
+* Apply the script only in pre-set screens.
 
 ## Contact
 
