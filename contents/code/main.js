@@ -1,12 +1,10 @@
 
-var BANNED_RESOURCES = [
-    "yakuake"
-];
 
 var csd = new CsdManager();
+var config = new Config();
 
 workspace.clientMaximizeSet.connect(function(client, horizontalMaximized, verticalMaximized) {
-    if (canRemoveDecoration(client)) {
+    if (config.allowed(client)) {
         if (horizontalMaximized && verticalMaximized) {
             csd.eval(client);
             client.noBorder = true;
@@ -18,7 +16,7 @@ workspace.clientMaximizeSet.connect(function(client, horizontalMaximized, vertic
 });
 
 workspace.clientAdded.connect(function(client) {
-    if (canRemoveDecoration(client)) {
+    if (config.allowed(client)) {
         var area = workspace.clientArea(KWin.MaximizeArea, client);
         var isMaximized = client.width >= area.width && client.height >= area.height;
         
@@ -26,10 +24,6 @@ workspace.clientAdded.connect(function(client) {
         client.noBorder = client.noBorder || isMaximized;
     }
 });
-
-function canRemoveDecoration(client) {
-    return BANNED_RESOURCES.indexOf(client.resourceClass.toString()) < 0;
-}
 
 function CsdManager() {
     this._csdClients = [];
@@ -59,4 +53,14 @@ CsdManager.prototype._registCsd = function(client) {
     if (index < 0) {
         this._csdClients.push(client.resourceClass.toString());
     }
+}
+
+function Config() {
+    this._bannedClients = [
+        "yakuake"
+    ]
+}
+
+Config.prototype.allowed = function(client) {
+    return this._bannedClients.indexOf(client.resourceClass.toString()) < 0;
 }
