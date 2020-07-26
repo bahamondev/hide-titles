@@ -6,7 +6,7 @@ A KWin script which hides the window titles when they are maximized.
 
 ### Build
 
-Just run the `make build`. That will create a zip file with plugin contents and rename it to the `.kwinscript` extension.
+Just run `make build`. That will create a zip file with plugin contents and rename it to the `.kwinscript` extension.
 If you want to manually build the script then:
 
 1. Compress the `contents` folder and the `metadata.desktop` file into a zip
