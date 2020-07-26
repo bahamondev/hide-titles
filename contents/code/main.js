@@ -10,7 +10,6 @@ workspace.clientMaximizeSet.connect(function(client, horizontalMaximized, vertic
             client.noBorder = true;
         } else {
             client.noBorder = csd.isCsd(client);
-            csd.eval(client);
         }
     }
 });
