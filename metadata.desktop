@@ -6,6 +6,7 @@ Type=Service
 
 X-Plasma-API=javascript
 X-Plasma-MainScript=code/main.js
+X-KWin-Border-Activate=true
 
 X-KDE-ServiceTypes=KWin/Script
 

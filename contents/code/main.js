@@ -1,7 +1,11 @@
-
-
 var csd = new CsdManager();
 var config = new Config();
+
+function init() {
+    initScreenEdges();
+}
+
+options.configChanged.connect(init);
 
 workspace.clientMaximizeSet.connect(function(client, horizontalMaximized, verticalMaximized) {
     if (config.allowed(client)) {
@@ -16,14 +20,17 @@ workspace.clientMaximizeSet.connect(function(client, horizontalMaximized, vertic
 
 workspace.clientAdded.connect(function(client) {
     if (config.allowed(client)) {
-        var area = workspace.clientArea(KWin.MaximizeArea, client);
-        var isMaximized = client.width >= area.width && client.height >= area.height;
-        
         csd.eval(client);
-        client.noBorder = client.noBorder || isMaximized;
+        client.noBorder = client.noBorder || isMaximized(client);
     }
 });
 
+function isMaximized(client) {
+    var area = workspace.clientArea(KWin.MaximizeArea, client);
+    return client.width >= area.width && client.height >= area.height;
+}
+
+// CsdManager
 function CsdManager() {
     this._csdClients = [];
 }
@@ -54,6 +61,7 @@ CsdManager.prototype._registCsd = function(client) {
     }
 }
 
+// Config
 function Config() {
     this._bannedClients = [
         "yakuake"
@@ -63,3 +71,38 @@ function Config() {
 Config.prototype.allowed = function(client) {
     return this._bannedClients.indexOf(client.resourceClass.toString()) < 0;
 }
+
+// screen borders
+function screenEdgeActivated() {
+    for (client of workspace.clientList()) {
+        if (client.active) {
+            if (config.allowed(client) && !csd.isCsd(client) && isMaximized(client)) {
+                client.noBorder = false;
+            }
+            return;
+        }
+    }
+}
+
+// magic code to register a screen edge listener that the user can then configure in screen edges settings
+// it's just done this way, there isn't really an explanation in the docs
+var registeredBorders = [];
+
+function initScreenEdges() {
+    for (var i in registeredBorders) {
+        unregisterScreenEdge(registeredBorders[i]);
+    }
+
+    registeredBorders = [];
+
+    var borders = readConfig("BorderActivate", "").toString().split(",");
+    for (var i in borders) {
+        var border = parseInt(borders[i]);
+        if (isFinite(border)) {
+            registeredBorders.push(border);
+            registerScreenEdge(border, screenEdgeActivated);
+        }
+    }
+}
+
+init();

@@ -36,6 +36,8 @@ Removes the window title on:
 
 And never applies on windows that always start without window borders (ie, latte dock, Application Menu widget...).
 
+Bind "Hide Titles" to a screen edge listener to restore the border on the active window (can be re-hidden by exiting and then entering maximized).
+
 To-do list:
 
 * Let the user set up application exceptions.
