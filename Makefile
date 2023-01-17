@@ -10,7 +10,7 @@ build: clean
 
 uninstall:
 	@echo "Removing hide-titles script..."
-	@-plasmapkg2 -t kwinscript -r hide-titles.kwinscript
+	@-plasmapkg2 -t kwinscript -r hide-titles
 
 install: uninstall build
 	@echo "Installing hide-titles..."
