@@ -6,7 +6,7 @@ clean:
 
 build: clean
 	@echo "Building..."
-	@zip hide-titles.kwinscript -r contents LICENSE metadata.desktop
+	@zip hide-titles.kwinscript -r contents LICENSE metadata.json
 
 uninstall:
 	@echo "Removing hide-titles script..."

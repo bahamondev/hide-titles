@@ -1,0 +1,24 @@
+{
+    "KPackageStructure": "KWin/Script",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "jose@bahamonde.dev",
+                "Name": "Jose Bahamonde Cordeiro"
+            }
+        ],
+        "Description": "Hide titlebar when a window is maximized.",
+        "Icon": "preferences-system-windows-script-test",
+        "Id": "hide-titles",
+        "License": "GPLv3",
+        "Name": "Hide Titles",
+        "ServiceTypes": [
+            "KWin/Script"
+        ],
+        "Version": "1.0.5",
+        "Website": "https://github.com/JoseBahamonde/hide-titles"
+    },
+    "X-Plasma-API": "javascript",
+    "X-KDE-ConfigModule": "kcm_kwin4_genericscripted",
+    "X-Plasma-MainScript": "code/main.js"
+}
